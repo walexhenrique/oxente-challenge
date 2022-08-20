@@ -2,13 +2,16 @@
 🚀 Desafio para desenvolvedoras e desenvolvedores full stack 
 
 
-<h4>O desafio:</h4>
+<h4>Cenário:</h4>
 Um usuário quer saber residências disponíveis para aluguel na região de São Raimundo Nonato utilizando seu smartphone ou computador.
 
 <h4>O que esperamos:</h4>
+
 <ul>
-<li>Filtros para classificar as residências disponíveis por cidade e bairro</li>
-<li>Exibir a localização no mapa</li>
+<li>Uma página principal onde estarão listadas as residências disponíveis para aluguel</li>
+<li>Apresentar aos usuários a opção de se registrarem na plataforma e cadastrarem residências</li>
+<li>Na lisagem das residências, filtros para classificar as residências disponíveis por cidade e bairro</li>
+<li>No detalhes de uma residência, a opção de visualizar localização no mapa (Google Maps, Bing Maps)</li>
 <li>Páginas responsivas</li>
 </ul>
 
