@@ -10,7 +10,7 @@ Um usuário quer saber residências disponíveis para aluguel na região de São
 <ul>
 <li>Uma página principal onde estarão listadas as residências disponíveis para aluguel</li>
 <li>Apresentar aos usuários a opção de se registrarem na plataforma e cadastrarem residências</li>
-<li>Na lisagem das residências, filtros para classificar as residências disponíveis por cidade e bairro</li>
+<li>Na listagem das residências apresentar filtros para classificá-las por cidade, bairro e outros campos que convir</li>
 <li>No detalhes de uma residência, a opção de visualizar localização no mapa (Google Maps, Bing Maps)</li>
 <li>Páginas responsivas</li>
 </ul>
