@@ -27,7 +27,9 @@ Um usuário quer saber residências disponíveis para aluguel na região de São
 <ul>
 <li>Faça fork desse repositório</li>
 <li>Crie um README.md com a sua abordagem para resolver o problema e explique detalhadamente como devemos executar o projeto</li>
-<li>Após concluir, faça um pull request e preencha esse formulário https://forms.microsoft.com/r/UVfHQGWMPV</li>
+<li>Após concluir, faça um pull request</li>
 </ul>
 
 Em caso de dúvidas, mande um e-mail para estevao@oxentenet.com.
+
+Bom trabalho!
