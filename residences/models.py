@@ -13,7 +13,8 @@ class Residence(models.Model):
     street = models.TextField(verbose_name='Rua')
     district = models.TextField(verbose_name='Bairro')
     number = models.CharField(max_length=5, blank=True, null=True, default='')
-    complement = models.TextField(verbose_name='Complemento')
+    complement = models.TextField(verbose_name='Complemento', default='')
+    is_published = models.BooleanField(verbose_name='Publicado', default=False)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -24,7 +25,13 @@ class Residence(models.Model):
     latitude = models.FloatField(default=0)  # Verificar se isso vai ser usado
     longitude = models.FloatField(default=0)  # Verificar se isso vai ser usado
 
+    def __str__(self) -> str:
+        return self.title
+
 
 class Photo(models.Model):
     residence = models.ForeignKey(Residence, on_delete=models.CASCADE, verbose_name='Residência', related_name='photos')
     image = models.ImageField(upload_to='residences/pictures/%Y/%m/%d/')
+
+    def __str__(self) -> str:
+        return self.image.url

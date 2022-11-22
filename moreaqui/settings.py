@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 
+from django.urls import reverse_lazy
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -24,6 +26,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'INSECURE')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+
 
 ALLOWED_HOSTS = []
 
@@ -38,6 +42,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'accounts',
+    'residences',
 ]
 
 MIDDLEWARE = [
@@ -116,6 +121,9 @@ MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
+
+LOGOUT_REDIRECT_URL = reverse_lazy('accounts:login')
+LOGIN_URL = reverse_lazy('accounts:login')
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 

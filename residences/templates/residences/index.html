@@ -1,0 +1,6 @@
+{% for residence in residences %}
+    <p>{{residence.title}}</p>
+    {% for photo in residence.photos.all %}
+    <img src="{{photo}}" alt="sla">
+    {% endfor %}
+{% endfor %}
