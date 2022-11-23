@@ -7,12 +7,12 @@ class Residence(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Dono')
     title = models.CharField(max_length=120, verbose_name='Título')
     slug = models.SlugField()
-    description = models.TextField()
+    description = models.TextField(verbose_name='Descrição da residência')
     price = models.FloatField(verbose_name='Preço')
 
     street = models.TextField(verbose_name='Rua')
     district = models.TextField(verbose_name='Bairro')
-    number = models.CharField(max_length=5, blank=True, null=True, default='')
+    number = models.CharField(max_length=5, blank=True, null=True, default='', verbose_name='Número')
     complement = models.TextField(verbose_name='Complemento', default='')
     is_published = models.BooleanField(verbose_name='Publicado', default=False)
 

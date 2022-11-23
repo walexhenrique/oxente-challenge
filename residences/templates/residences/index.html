@@ -1,6 +1,30 @@
-{% for residence in residences %}
-    <p>{{residence.title}}</p>
-    {% for photo in residence.photos.all %}
-    <img src="{{photo}}" alt="sla">
-    {% endfor %}
-{% endfor %}
+
+{% extends 'global/base.html' %}
+{% load static %}
+{% block content %}
+
+<h2>Residências para alugar em São Raimundo Nonato:</h2>
+<div class="row row-cols-2">
+  {% for residence in residences %}
+  <div class="col">
+    <div class="text-center">
+        <a href="{% url 'residences:residence-detail' residence.slug %}">
+          <img src="{{residence.photos.all.0}}" alt="sla" class="rounded img-fluid p-5">
+        </a>
+    </div>
+      <p class="text-center"><strong>Oferta:</strong> {{residence.title}}</p>
+      <p class="text-center"><strong>Preço:</strong> {{residence.price}}/mês</p>
+      <p class="text-center"><strong>Publicada em:</strong> {{residence.created_at}}</p>
+      <div class="text-center">
+        <a class="btn btn-primary container-fluid" href="{% url 'residences:residence-detail' residence.slug %}" role="button">Mais informações</a>
+      </div>
+      {% for photo in residence.photos.all %}
+      {% endfor %}
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock content %}
+
+
+
