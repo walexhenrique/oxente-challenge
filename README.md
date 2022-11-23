@@ -6,6 +6,11 @@ Um projeto de divulgação de alugueis, onde o usuário pode encontrar casas par
 
 ## Serviços usados
 - Github
+- Bing maps
+
+Estrutura do banco de dados:
+
+![image](https://user-images.githubusercontent.com/50607185/203520404-952412dd-0520-4147-b5b4-3574785c688f.png)
 
 
 ## 🚀 Começando
