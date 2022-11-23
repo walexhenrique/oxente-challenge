@@ -15,6 +15,7 @@
     </div>
       <p class="text-center"><strong>Preço:</strong> {{residence.price}}/mês</p>
 
+      <p class="text-center"><strong>Cidade:</strong> {{residence.city}}</p>
       <p class="text-center"><strong>Localizado na rua:</strong> {{residence.street}}</p>
       <p class="text-center"><strong>No bairro:</strong> {{residence.district}}</p>
       <p class="text-center"><strong>Número:</strong> {{residence.number}}</p>
@@ -26,7 +27,31 @@
       <p class="text-center"><strong>Número de quartos:</strong> {{residence.bedrooms}}</p>
       <p class="text-center"><strong>Contato:</strong> {{residence.owner.phone_number}}</p>
       
+      <div class="mapContainer">
+        <div style="text-center">
+          <div id="myMap" class="mx-auto" style="display:flex; align-items: center;"></div>
+        </div>
+      </div>
   </div>
 </div>
+{{latitude|json_script:"json-latitude"}}
+{{longitude|json_script:"json-longitude"}}
+<script type='text/javascript'>
+  var map,contextMenu,loc;
+  const latitude = JSON.parse(document.getElementById('json-latitude').textContent);
+  const longitude = JSON.parse(document.getElementById('json-longitude').textContent);
+  function GetMap()
+		{
+			loc = new Microsoft.Maps.Location(latitude, longitude);
+			map = new Microsoft.Maps.Map('#myMap', 
+			{
+				showDashboard: false,
+				center: loc,
+        zoom: 18,
+			});
+    }
+</script>
+
+<script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AkyIf2429XZZUarwmIZIeXHsB9te9u_byrn-_qzUMiz1AU0qUuvs6oiXdj56TDUu' async defer></script>
 
 {% endblock content %}

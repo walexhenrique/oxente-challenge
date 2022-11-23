@@ -8,7 +8,7 @@ class ResidenceForm(forms.ModelForm):
         model = Residence
         fields = ['title', 'description', 'price', 'street',
         'district', 'number', 'complement', 'is_published',
-        'bathrooms', 'bedrooms', 
+        'bathrooms', 'bedrooms', 'city', 'zipcode'
         ]
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
@@ -21,4 +21,6 @@ class ResidenceForm(forms.ModelForm):
             'is_published': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
             'bathrooms': forms.TextInput(attrs={'class': 'form-control'}),
             'bedrooms': forms.TextInput(attrs={'class': 'form-control'}),
+            'city': forms.TextInput(attrs={'class': 'form-control'}),
+            'zipcode': forms.TextInput(attrs={'class': 'form-control'}),
         }

@@ -29,6 +29,8 @@ class Residence(models.Model):
     latitude = models.FloatField(default=0)  # Verificar se isso vai ser usado
     longitude = models.FloatField(default=0)  # Verificar se isso vai ser usado
 
+    city = models.CharField(max_length=50, default='São Raimundo Nonato')
+    zipcode = models.CharField(max_length=20, default='64770000')
     def __str__(self) -> str:
         return self.title
     

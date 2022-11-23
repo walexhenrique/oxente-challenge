@@ -1,6 +1,6 @@
+import requests
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views import View
 
@@ -11,7 +11,7 @@ from .models import Photo, Residence
 class Index(View):
     def get(self, *args, **kwargs):
 
-        residences = Residence.objects.filter(is_published=True)
+        residences = Residence.objects.filter(is_published=True).order_by('-id')
         # Pegando os filtros
         
         district = self.request.GET.get('district')
@@ -19,13 +19,15 @@ class Index(View):
         city = self.request.GET.get('city')
 
         if district:
-            residences.filter(district__icontains=district)
+            residences = residences.filter(district__icontains=district)
+            print(residences.query)
+            print('entrei')
         
         if self.convert_price(price):
-            residences.filter(price__lte=price)
+            residences = residences.filter(price__lte=price)
         
         if city:
-            residences.filter(city__icontains=city)
+            residences = residences.filter(city__icontains=city)
         
         return render(self.request, 'residences/index.html', {'residences': residences})
     
@@ -39,7 +41,12 @@ class Index(View):
 class ResidencesDetail(View):
     def get(self, *args, **kwargs):
         residence = get_object_or_404(Residence, slug=self.kwargs.get('slug'), is_published=True)
-        return render(self.request, 'residences/detail-residence.html', {'residence': residence})
+        key = 'AkyIf2429XZZUarwmIZIeXHsB9te9u_byrn-_qzUMiz1AU0qUuvs6oiXdj56TDUu'
+        url_localization = f'http://dev.virtualearth.net/REST/v1/Locations?countryRegion=Brasil&adminDistrict=PI&locality={residence.city}&postalCode={residence.zipcode}&addressLine={residence.street}&maxResults=1&key={key}'
+        localization = requests.get(url_localization)
+        latitude = localization.json()['resourceSets'][0]['resources'][0]['geocodePoints'][0]['coordinates'][0]
+        longitude = localization.json()['resourceSets'][0]['resources'][0]['geocodePoints'][0]['coordinates'][1]
+        return render(self.request, 'residences/detail-residence.html', {'residence': residence, 'latitude': latitude, 'longitude': longitude})
 
 @method_decorator(login_required, name='dispatch')
 class Dashboard(View):

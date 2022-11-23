@@ -33,13 +33,12 @@ Residências
         </a>
     </div>
       <p class="text-center"><strong>Oferta:</strong> {{residence.title}}</p>
+      <p class="text-center"><strong>Cidade:</strong> {{residence.city}}</p>
       <p class="text-center"><strong>Preço:</strong> {{residence.price}}/mês</p>
       <p class="text-center"><strong>Publicada em:</strong> {{residence.created_at}}</p>
       <div class="text-center">
         <a class="btn btn-primary container-fluid" href="{% url 'residences:residence-detail' residence.slug %}" role="button">Mais informações</a>
       </div>
-      {% for photo in residence.photos.all %}
-      {% endfor %}
   </div>
   {% endfor %}
 </div>
