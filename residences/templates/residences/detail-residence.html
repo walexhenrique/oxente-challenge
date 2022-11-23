@@ -6,12 +6,19 @@
 <h2>Residência: {{residence.title}}</h2>
 <div class="row row-cols-1">
   <div class="col">
+    <div class="galeria">
     {% for photo in residence.photos.all %}
-    <div class="text-center">
-        <img src="{{photo}}" alt="sla" class="rounded img-fluid p-5">
+      <div class="text-center">
+          <img src="{{photo}}" alt="sla" class="rounded img-fluid p-5">
+      </div>
+      {% endfor %}
     </div>
-    {% endfor %}
       <p class="text-center"><strong>Preço:</strong> {{residence.price}}/mês</p>
+
+      <p class="text-center"><strong>Localizado na rua:</strong> {{residence.street}}</p>
+      <p class="text-center"><strong>No bairro:</strong> {{residence.district}}</p>
+      <p class="text-center"><strong>Número:</strong> {{residence.number}}</p>
+      <p class="text-center"><strong>Complemento:</strong> {{residence.complement}}</p>
       <p class="text-center"><strong>Publicada em:</strong> {{residence.created_at}}</p>
       <p class="text-center"><strong>Atualizado em:</strong> {{residence.updated_at}}</p>
       <p class="text-center"><strong>Mais informações:</strong> {{residence.description}}</p>

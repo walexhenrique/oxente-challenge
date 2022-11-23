@@ -9,7 +9,7 @@
         <h1>APAGAR RESIDÊNCIA</h1>
         <form method="post" class="forms">
             {% csrf_token %}
-            <p>Você tem certeza que quer apagar a residência: "{{ residence.title }}"" ?</p>
+            <p>Você tem certeza que quer apagar a residência: "{{ residence.title }}" ?</p>
             <button type="submit" class="send">Apagar</button>
         </form>
     </div>

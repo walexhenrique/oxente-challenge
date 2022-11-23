@@ -7,7 +7,23 @@ Residências
 
 {% block content %}
 
-<h2>Residências para alugar em São Raimundo Nonato:</h2>
+<h2 class="px-4">Residências para alugar em São Raimundo Nonato:</h2>
+<h4>Buscar com auxílio de filtros:</h4>
+<form action="." method="get">
+  <div class="mb-3">
+    <label for="district" class="form-label">Bairro</label>
+    <input type="text" class="form-control" name='district' id="district" placeholder="Santa luzia">
+  </div>
+  <div class="mb-3">
+    <label for="price">Preço máximo: </label>
+    <input type="number" placeholder="230" class="form-control" name="price" id="price">
+  </div>
+  <div class="mb-3">
+    <label for="city">Cidade: </label>
+    <input type="text" placeholder="São Raimundo Nonato" class="form-control" name="city" id="city">
+  </div>
+  <button type="submit" class="btn btn-primary">Buscar com filtros</button>
+</form>
 <div class="row row-cols-2">
   {% for residence in residences %}
   <div class="col">

@@ -11,9 +11,30 @@ from .models import Photo, Residence
 class Index(View):
     def get(self, *args, **kwargs):
 
-        residences = Residence.objects.filter(is_published=True, **self.request.GET)
+        residences = Residence.objects.filter(is_published=True)
+        # Pegando os filtros
+        
+        district = self.request.GET.get('district')
+        price = self.request.GET.get('price')
+        city = self.request.GET.get('city')
+
+        if district:
+            residences.filter(district__icontains=district)
+        
+        if self.convert_price(price):
+            residences.filter(price__lte=price)
+        
+        if city:
+            residences.filter(city__icontains=city)
         
         return render(self.request, 'residences/index.html', {'residences': residences})
+    
+    def convert_price(self, price):
+        try:
+            price = float(price)
+            return price
+        except:
+            return False
 
 class ResidencesDetail(View):
     def get(self, *args, **kwargs):
