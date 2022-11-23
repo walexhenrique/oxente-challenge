@@ -44,6 +44,7 @@ class ResidencesDetail(View):
         residence = get_object_or_404(Residence, slug=self.kwargs.get('slug'), is_published=True)
         key = 'AkyIf2429XZZUarwmIZIeXHsB9te9u_byrn-_qzUMiz1AU0qUuvs6oiXdj56TDUu'
         url_localization = f'http://dev.virtualearth.net/REST/v1/Locations?countryRegion=Brasil&adminDistrict=PI&locality={residence.city}&postalCode={residence.zipcode}&addressLine={residence.street}&maxResults=1&key={key}'
+        
         localization = requests.get(url_localization)
         latitude = localization.json()['resourceSets'][0]['resources'][0]['geocodePoints'][0]['coordinates'][0]
         longitude = localization.json()['resourceSets'][0]['resources'][0]['geocodePoints'][0]['coordinates'][1]
@@ -110,8 +111,8 @@ class ResidencesDeleteView(View):
         return render(self.request, 'residences/delete-residence.html', {'residence': residence})
     
     def post(self, *args, **kwargs):
-        messages.success(self.request, 'Residência excluida com sucesso!')
         residence = get_object_or_404(Residence, slug=self.kwargs.get('slug'), owner=self.request.user)
+        messages.success(self.request, 'Residência excluida com sucesso!')
         residence.delete()
         return redirect('residences:dashboard')
 
