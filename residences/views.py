@@ -1,4 +1,5 @@
 import requests
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.decorators import method_decorator
@@ -76,7 +77,8 @@ class ResidencesCreateView(View):
             del(self.request.session['residence'])
             
             for image in images:
-                photo = Photo.objects.create(residence=residence, image=image)
+                Photo.objects.create(residence=residence, image=image)
+            messages.success(self.request, 'Residência criada com sucesso! lembre-se não é possível mudar as fotos dela!')
         
         return redirect('residences:dashboard')
 
@@ -94,6 +96,7 @@ class ResidencesUpdateView(View):
 
         if form.is_valid():
             form.save()
+            messages.success(self.request, 'Residência atualizada com sucesso!!')
             return redirect('residences:dashboard')
         
         return redirect('residences:residence-create')
@@ -107,7 +110,7 @@ class ResidencesDeleteView(View):
         return render(self.request, 'residences/delete-residence.html', {'residence': residence})
     
     def post(self, *args, **kwargs):
-        # messages.success(self.request, 'Residence excluida com sucesso')
+        messages.success(self.request, 'Residência excluida com sucesso!')
         residence = get_object_or_404(Residence, slug=self.kwargs.get('slug'), owner=self.request.user)
         residence.delete()
         return redirect('residences:dashboard')

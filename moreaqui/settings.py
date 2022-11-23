@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 
+from django.contrib.messages import constants
 from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -129,5 +130,9 @@ LOGOUT_REDIRECT_URL = reverse_lazy('accounts:login')
 LOGIN_URL = reverse_lazy('accounts:login')
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+MESSAGE_TAGS = {
+    constants.ERROR: 'alert-danger',
+    constants.SUCCESS: 'alert-success',
+}
 
 AUTH_USER_MODEL = 'accounts.User'

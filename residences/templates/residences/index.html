@@ -7,7 +7,7 @@ Residências
 
 {% block content %}
 
-<h2 class="px-4">Residências para alugar em São Raimundo Nonato:</h2>
+<h2 class="px-4 text-primary">Residências para alugar na região:</h2>
 <h4>Buscar com auxílio de filtros:</h4>
 <form action="." method="get">
   <div class="mb-3">
@@ -25,6 +25,7 @@ Residências
   <button type="submit" class="btn btn-primary">Buscar com filtros</button>
 </form>
 <div class="row row-cols-2">
+  
   {% for residence in residences %}
   <div class="col">
     <div class="text-center">
@@ -40,6 +41,8 @@ Residências
         <a class="btn btn-primary container-fluid" href="{% url 'residences:residence-detail' residence.slug %}" role="button">Mais informações</a>
       </div>
   </div>
+  {% empty %}
+  <h3 class="my-2">Nada encontrado :(</h3>
   {% endfor %}
 </div>
 

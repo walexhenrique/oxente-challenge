@@ -8,6 +8,13 @@
 <body>
     {% include 'global/partials/header.html' %}
         <div class="container">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert {{ message.tags }} my-2">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
         <section class="my-5">
             {% block content %}
             {% endblock content %}

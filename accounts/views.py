@@ -1,5 +1,6 @@
+from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from django.shortcuts import HttpResponse, redirect, render
+from django.shortcuts import redirect, render
 from django.views import View
 
 from .forms.login_form import LoginForm
@@ -30,7 +31,7 @@ class RegisterView(View):
             user.save()
             
             del(self.request.session['register_data'])
-            # messages.success(self.request, 'Usuário criado com sucesso!')
+            messages.success(self.request, 'Usuário criado com sucesso!')
 
             return redirect('accounts:login')
 
@@ -58,6 +59,6 @@ class LoginView(View):
                 login(self.request, user)
                 return redirect('residences:dashboard')
         
-        # messages.error(self.request, 'Nome de usuário e Senha não correspondem!')
+        messages.error(self.request, 'Nome de usuário e Senha não correspondem!')
         
         return redirect('accounts:login')

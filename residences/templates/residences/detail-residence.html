@@ -27,6 +27,7 @@
       <p class="text-center"><strong>Número de quartos:</strong> {{residence.bedrooms}}</p>
       <p class="text-center"><strong>Contato:</strong> {{residence.owner.phone_number}}</p>
       
+      <p class="text-center">Localização aproximada (Não é precisa!!):</p>
       <div class="mapContainer">
         <div style="text-center">
           <div id="myMap" class="mx-auto" style="display:flex; align-items: center;"></div>
@@ -47,8 +48,11 @@
 			{
 				showDashboard: false,
 				center: loc,
-        zoom: 18,
+        zoom: 17,
 			});
+
+      var pin = new Microsoft.Maps.Pushpin(loc);
+      map.entities.push(pin);
     }
 </script>
 
