@@ -1,10 +1,18 @@
+
+{% extends 'global/base.html' %}
+
+{% block title %}Apagar a residência: {{residence.title}}{% endblock title %}
+
+{% block content %}
 <div class="content">
     <div class="content-form">
         <h1>APAGAR RESIDÊNCIA</h1>
         <form method="post" class="forms">
             {% csrf_token %}
-            <p>Você tem certeza que quer apagar a residência: {{ residence.title }} ?</p>
+            <p>Você tem certeza que quer apagar a residência: "{{ residence.title }}"" ?</p>
             <button type="submit" class="send">Apagar</button>
         </form>
     </div>
 </div>
+
+{% endblock %}

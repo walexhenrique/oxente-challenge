@@ -1,5 +1,18 @@
-<form action="." method="post">
+{% extends 'global/base.html' %}
+{% block title %}
+Logar
+{% endblock title %}
+{% block content %}
+<h2 class="text-center">Logar</h2>
+<form method="post" class="py-5 my-5" action=".">
     {% csrf_token %}
-    {{form}}
-    <button type="submit">Enviar</button>
+    {% for field in form %}
+    <div class="form-group py-2">
+        <label for="{{field.id_for_label}}">{{field.label}}</label>
+        {{field}}
+        {{field.errors}}
+    </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Logar</button>
 </form>
+{% endblock content %}

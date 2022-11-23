@@ -18,7 +18,7 @@ class RegisterForm(forms.ModelForm):
         error_messages={
             'max_length': 'Erro, número de telefone muito longo'
         },
-        widget=forms.TextInput(attrs={'placeholder': 'Ex.: 75981041516'})
+        widget=forms.TextInput(attrs={'placeholder': 'Ex.: 75981041516', 'class': 'form-control'})
     )
     first_name = forms.CharField(
         max_length=150,
@@ -26,7 +26,7 @@ class RegisterForm(forms.ModelForm):
         error_messages={
             'max_length': 'Erro, nome muito longo'
         },
-        widget=forms.TextInput(attrs={'placeholder': 'Ex.: Bruno...'})
+        widget=forms.TextInput(attrs={'placeholder': 'Ex.: Bruno...', 'class': 'form-control'})
     )
     last_name = forms.CharField(
         max_length=150,
@@ -34,12 +34,12 @@ class RegisterForm(forms.ModelForm):
         error_messages={
             'max_length': 'Erro, sobrenome muito longo'
         },
-        widget=forms.TextInput(attrs={'placeholder': 'Ex.: Miranda...'})
+        widget=forms.TextInput(attrs={'placeholder': 'Ex.: Miranda...', 'class': 'form-control'})
     )
 
     email = forms.EmailField(
         label='E-mail',
-        widget=forms.EmailInput(attrs={'placeholder': 'Ex.: joao@email.com'})
+        widget=forms.EmailInput(attrs={'placeholder': 'Ex.: joao@email.com', 'class': 'form-control'})
     )
 
     password = forms.CharField(
@@ -48,7 +48,7 @@ class RegisterForm(forms.ModelForm):
         error_messages={
             'max_length': 'Erro, senha é muito longa'
         },
-        widget=forms.PasswordInput(attrs={'placeholder': 'Sua senha...'})
+        widget=forms.PasswordInput(attrs={'placeholder': 'Sua senha...', 'class': 'form-control'})
     )
 
     password2 = forms.CharField(
@@ -57,7 +57,7 @@ class RegisterForm(forms.ModelForm):
         error_messages={
             'max_length': 'Erro, sua senha é muito longa'
         },
-        widget=forms.PasswordInput(attrs={'placeholder': 'Repita sua senha...'})
+        widget=forms.PasswordInput(attrs={'placeholder': 'Repita sua senha...', 'class': 'form-control'})
     )
     
     def clean_phone_number(self):

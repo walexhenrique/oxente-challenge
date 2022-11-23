@@ -17,7 +17,7 @@ class Index(View):
 
 class ResidencesDetail(View):
     def get(self, *args, **kwargs):
-        residence = get_object_or_404(Residence, slug=self.kwargs.get('slug'))
+        residence = get_object_or_404(Residence, slug=self.kwargs.get('slug'), is_published=True)
         return render(self.request, 'residences/detail-residence.html', {'residence': residence})
 
 @method_decorator(login_required, name='dispatch')
@@ -44,6 +44,8 @@ class ResidencesCreateView(View):
         if form.is_valid():
             images = self.request.FILES.getlist('images')
             residence = Residence.objects.create(owner=self.request.user, **form.cleaned_data)
+
+            del(self.request.session['residence'])
             
             for image in images:
                 photo = Photo.objects.create(residence=residence, image=image)

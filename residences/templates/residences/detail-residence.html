@@ -1,1 +1,25 @@
-{{residence.title}}
+{% extends 'global/base.html' %}
+{% load static %}
+{% block title %}{{residence.title}}{% endblock title %}
+
+{% block content %}
+<h2>Residência: {{residence.title}}</h2>
+<div class="row row-cols-1">
+  <div class="col">
+    {% for photo in residence.photos.all %}
+    <div class="text-center">
+        <img src="{{photo}}" alt="sla" class="rounded img-fluid p-5">
+    </div>
+    {% endfor %}
+      <p class="text-center"><strong>Preço:</strong> {{residence.price}}/mês</p>
+      <p class="text-center"><strong>Publicada em:</strong> {{residence.created_at}}</p>
+      <p class="text-center"><strong>Atualizado em:</strong> {{residence.updated_at}}</p>
+      <p class="text-center"><strong>Mais informações:</strong> {{residence.description}}</p>
+      <p class="text-center"><strong>Número de banheiros:</strong> {{residence.bathrooms}}</p>
+      <p class="text-center"><strong>Número de quartos:</strong> {{residence.bedrooms}}</p>
+      <p class="text-center"><strong>Contato:</strong> {{residence.owner.phone_number}}</p>
+      
+  </div>
+</div>
+
+{% endblock content %}

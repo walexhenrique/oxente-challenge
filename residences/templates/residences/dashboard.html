@@ -1,5 +1,34 @@
-<h1>SUAS CASAS</h1>
 
-{% for residence in residences %}
-    <p>{{residence}}</p>
-{% endfor %}
+{% extends 'global/base.html' %}
+
+{% block title %}Suas residências{% endblock title %}
+
+{% block content %}
+
+<h2>Suas residências:</h2>
+<div class="text-center">
+    <a class="btn btn-primary my-2 container-fluid" href="{% url 'residences:residence-create' %}" role="button">Criar novo anúncio</a>
+  </div>
+<div class="row row-cols-2">
+  {% for residence in residences %}
+  <div class="col">
+    <div class="text-center">
+        <a href="{% url 'residences:residence-detail' residence.slug %}">
+          <img src="{{residence.photos.all.0}}" alt="sla" class="rounded img-fluid p-5">
+        </a>
+    </div>
+      <p class="text-center"><strong>Oferta:</strong> {{residence.title}}</p>
+      <p class="text-center"><strong>Preço:</strong> {{residence.price}}/mês</p>
+      <p class="text-center"><strong>Publicada em:</strong> {{residence.created_at}}</p>
+      <div class="text-center">
+        <a class="btn btn-primary my-2 container-fluid" href="{% url 'residences:residence-update' residence.slug %}" role="button">Editar</a>
+        <a class="btn btn-danger my-2 container-fluid" href="{% url 'residences:residence-delete' residence.slug %}" role="button">Excluir</a>
+      </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock content %}
+
+
+

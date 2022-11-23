@@ -10,7 +10,7 @@ class LoginForm(forms.Form):
         error_messages={
             'max_length': 'Credenciais inválidas',
         },
-        widget=forms.EmailInput(attrs={'placeholder': 'Ex.: joao@email.com'})
+        widget=forms.EmailInput(attrs={'placeholder': 'Ex.: joao@email.com', 'class': 'form-control'})
     )
 
     password = forms.CharField(
@@ -19,5 +19,5 @@ class LoginForm(forms.Form):
         error_messages={
             'max_length': 'Credenciais inválidas',
         },
-        widget=forms.PasswordInput(attrs={'placeholder': 'Senha...'})
+        widget=forms.PasswordInput(attrs={'placeholder': 'Senha...', 'class': 'form-control'})
     )

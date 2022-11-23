@@ -10,8 +10,8 @@ class RegisterView(View):
     """Class represents creation logic for new users"""
     def get(self, *args, **kwargs):
 
-        # if self.request.user.is_authenticated:
-            # return redirect('tasks:painel')
+        if self.request.user.is_authenticated:
+            return redirect('residences:dashboard')
 
         data_session = self.request.session.get('register_data')
         form = RegisterForm(data_session)
@@ -32,7 +32,7 @@ class RegisterView(View):
             del(self.request.session['register_data'])
             # messages.success(self.request, 'Usuário criado com sucesso!')
 
-            return HttpResponse('aaaaaaaaaaaaaaaaaa')
+            return redirect('accounts:login')
 
         return redirect('accounts:register')
 
@@ -40,8 +40,8 @@ class RegisterView(View):
 class LoginView(View):
     """Represents the login logic for users already registered"""
     def get(self, *args, **kwargs):
-        # if self.request.user.is_authenticated:
-        #     return redirect('tasks:painel')
+        if self.request.user.is_authenticated:
+            return redirect('residences:dashboard')
         
         form = LoginForm()
         return render(self.request, 'accounts/login.html', {'form': form})
@@ -56,7 +56,7 @@ class LoginView(View):
 
             if user:
                 login(self.request, user)
-                return HttpResponse('SLA MANOAAA')
+                return redirect('residences:dashboard')
         
         # messages.error(self.request, 'Nome de usuário e Senha não correspondem!')
         

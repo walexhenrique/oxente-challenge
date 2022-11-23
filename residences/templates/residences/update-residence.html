@@ -1,7 +1,18 @@
-<form action="." method="post" enctype="multipart/form-data">
+{% extends 'global/base.html' %}
+{% block title %}
+Editar anúncio
+{% endblock title %}
+{% block content %}
+<h2 class="text-center">Editar anúncio</h2>
+<form method="post" class="py-5 my-5" action="." enctype="multipart/form-data">
     {% csrf_token %}
-    {{form}}
-    <input type="file" name='images' multiple>
-    <button type="submit">Enviar</button>
+    {% for field in form %}
+    <div class="form-group py-2">
+        <label for="{{field.id_for_label}}">{{field.label}}</label>
+        {{field}}
+        {{field.errors}}
+    </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Editar anúncio</button>
 </form>
-<!--Criar uma view para excluir imagem-->
+{% endblock content %}
